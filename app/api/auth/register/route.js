@@ -40,4 +40,3 @@ export async function POST(req) {
     return fail(`Register failed: ${err?.message || 'unknown'}`, 500);
   }
 }
-}
