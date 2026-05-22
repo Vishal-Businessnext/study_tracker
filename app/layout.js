@@ -2,6 +2,7 @@ import './globals.css';
 import { Toaster } from 'react-hot-toast';
 import ThemeProvider from '@/components/ThemeProvider';
 
+export const dynamic = 'force-dynamic';
 export const metadata = {
   title: 'Study Tracker',
   description: 'Track your study sessions, goals, and progress.',
