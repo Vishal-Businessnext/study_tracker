@@ -1,0 +1,10 @@
+MONGODB_URI=
+JWT_SECRET=
+JWT_EXPIRES_IN=7d
+REQUIRE_EMAIL_OTP=true            # toggle OTP verification
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_SECURE=false
+SMTP_USER=youremail@gmail.com
+SMTP_PASS=your-app-password       # Gmail: generate at myaccount.google.com → Security → App passwords
+SMTP_FROM="Study Tracker <youremail@gmail.com>"

@@ -4,6 +4,7 @@ import User from '@/models/User';
 import { hashPassword, signToken, COOKIE_NAME } from '@/lib/auth';
 import { ok, fail } from '@/lib/utils';
 import { rateLimit, clientIp } from '@/lib/middleware';
+import { isOtpRequired } from '@/lib/email';
 
 const schema = z.object({
   name: z.string().min(2).max(80),
@@ -15,6 +16,9 @@ export async function POST(req) {
   const reqId = Math.random().toString(36).slice(2, 8);
   console.log(`[register:${reqId}] incoming from ip=${clientIp(req)}`);
   try {
+    if (isOtpRequired()) {
+      return fail('Email verification required. Use /api/auth/register-request.', 400);
+    }
     if (!rateLimit(`register:${clientIp(req)}`, 10)) return fail('Too many requests', 429);
     const body = await req.json().catch(() => null);
     const parsed = schema.safeParse(body);
