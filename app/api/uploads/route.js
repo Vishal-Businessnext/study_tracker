@@ -37,7 +37,7 @@ export async function POST(req) {
   await fs.writeFile(filePath, bytes);
 
   await connectDB();
-  const publicPath = `/uploads/${unique}`;
+  const publicPath = `/api/files/${unique}`;
   const doc = await Upload.create({
     user: user.id,
     path: publicPath,

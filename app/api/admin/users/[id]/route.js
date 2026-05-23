@@ -23,8 +23,9 @@ export async function DELETE(req, { params }) {
   const uploads = await Upload.find({ user: target._id });
   for (const u of uploads) {
     try {
-      if (u.path?.startsWith('/uploads/')) {
-        const filePath = path.join(process.cwd(), 'public', u.path.replace(/^\//, ''));
+      const name = u.path?.split('/').pop();
+      if (name) {
+        const filePath = path.join(process.cwd(), 'public', 'uploads', name);
         await fs.unlink(filePath).catch(() => {});
       }
     } catch {}
